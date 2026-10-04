@@ -67,7 +67,7 @@ export default function RegisterScreen() {
         value={email}
       />
       <FormField
-        keyboardType="phone-pad"
+        // keyboardType="phone-pad"
         label="Mobile Number"
         maxLength={11}
         onChangeText={setPhoneNo}

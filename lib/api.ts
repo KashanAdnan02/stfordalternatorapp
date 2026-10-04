@@ -2,6 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://stford-alternator-app.vercel.app/api",
+  // baseURL: "http://localhost:3000/api",
   // baseURL: "https://st-ford-alternator-website.vercel.app/api",
   timeout: 20000,
   headers: {
@@ -72,9 +73,8 @@ export async function validateAlternator(
   serialNumber: string,
   name: string,
 ): Promise<ApiReply> {
-  const response = await api.post<ApiReply>(
+  const response = await api.get<ApiReply>(
     `/v2/engine/${encodeURIComponent(serialNumber)}`,
-    { name },
   );
-  return response.data;
+  return response?.data;
 }
