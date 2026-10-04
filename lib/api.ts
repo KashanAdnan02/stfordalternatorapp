@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const baseURL =
+  process.env.EXPO_PUBLIC_API_URL?.replace(/\/+$/, "") ||
+  "https://stford-alternator-app.vercel.app/api";
+
 const api = axios.create({
-  baseURL: "https://stford-alternator-app.vercel.app/api",
-  // baseURL: "http://localhost:3000/api",
-  // baseURL: "https://st-ford-alternator-website.vercel.app/api",
+  baseURL,
   timeout: 20000,
   headers: {
     Accept: "application/json",
@@ -65,16 +67,21 @@ export async function registerAccount(input: {
 }
 
 export async function getCurrentUser(token: string): Promise<ApiReply> {
-  const response = await api.post<ApiReply>("/v1/user/me", { token });
+  const response = await api.post<ApiReply>(
+    "/v1/user/me",
+    {},
+    { headers: { Authorization: `Bearer ${token}` } },
+  );
   return response.data;
 }
 
 export async function validateAlternator(
   serialNumber: string,
-  name: string,
+  token: string,
 ): Promise<ApiReply> {
   const response = await api.get<ApiReply>(
     `/v2/engine/${encodeURIComponent(serialNumber)}`,
+    { headers: { Authorization: `Bearer ${token}` } },
   );
   return response?.data;
 }

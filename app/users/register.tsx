@@ -6,7 +6,7 @@ import { FormField } from "../../components/FormField";
 import { PrimaryButton } from "../../components/PrimaryButton";
 import { getErrorMessage, registerAccount } from "../../lib/api";
 import { saveToken } from "../../lib/session";
-import { colors } from "../../lib/theme";
+import { colors, fonts } from "../../lib/theme";
 
 export default function RegisterScreen() {
   const [name, setName] = useState("");
@@ -47,8 +47,8 @@ export default function RegisterScreen() {
 
   return (
     <AuthLayout
-      title="Welcome!"
-      subtitle="Create an account to join ST Ford Alternator"
+      title="Get started"
+      subtitle="Create your account to verify your ST Ford alternator."
     >
       <FormField
         autoComplete="name"
@@ -67,7 +67,8 @@ export default function RegisterScreen() {
         value={email}
       />
       <FormField
-        // keyboardType="phone-pad"
+        autoComplete="tel"
+        keyboardType="phone-pad"
         label="Mobile Number"
         maxLength={11}
         onChangeText={setPhoneNo}
@@ -82,7 +83,7 @@ export default function RegisterScreen() {
         secureTextEntry
         value={password}
       />
-      <PrimaryButton label="REGISTER" loading={loading} onPress={submit} />
+      <PrimaryButton label="Create account" loading={loading} onPress={submit} />
       <Text style={styles.footer}>
         Have an account?{" "}
         <Link href="/users/login" style={styles.link}>
@@ -95,14 +96,14 @@ export default function RegisterScreen() {
 
 const styles = StyleSheet.create({
   footer: {
-    color: colors.white,
+    color: colors.muted,
+    fontFamily: fonts.regular,
     fontSize: 14,
-    marginTop: 20,
+    marginTop: 24,
     textAlign: "center",
   },
   link: {
-    color: colors.white,
-    fontWeight: "700",
-    textDecorationLine: "underline",
+    color: colors.brand,
+    fontFamily: fonts.bold,
   },
 });

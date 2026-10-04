@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
-import { colors } from "../lib/theme";
+import { colors, fonts } from "../lib/theme";
 
 type PrimaryButtonProps = {
   label: string;
@@ -12,12 +12,13 @@ export function PrimaryButton({
   label,
   onPress,
   loading = false,
-  variant = "light",
+  variant = "brand",
 }: PrimaryButtonProps) {
   const light = variant === "light";
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityState={{ disabled: loading, busy: loading }}
       disabled={loading}
       onPress={onPress}
       style={({ pressed }) => [
@@ -41,33 +42,37 @@ export function PrimaryButton({
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    borderRadius: 6,
+    borderRadius: 13,
     justifyContent: "center",
-    minHeight: 52,
+    marginTop: 22,
+    minHeight: 54,
     paddingHorizontal: 20,
     width: "100%",
   },
   lightButton: {
     backgroundColor: colors.white,
+    borderColor: colors.border,
+    borderWidth: 1,
   },
   brandButton: {
     backgroundColor: colors.brand,
   },
   label: {
-    fontSize: 15,
-    fontWeight: "700",
-    letterSpacing: 0.4,
+    fontFamily: fonts.bold,
+    fontSize: 14,
+    letterSpacing: 0.3,
   },
   lightLabel: {
-    color: colors.brand,
+    color: colors.text,
   },
   brandLabel: {
     color: colors.white,
   },
   pressed: {
-    opacity: 0.82,
+    opacity: 0.84,
+    transform: [{ scale: 0.99 }],
   },
   disabled: {
-    opacity: 0.75,
+    opacity: 0.68,
   },
 });

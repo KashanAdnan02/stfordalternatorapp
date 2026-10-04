@@ -6,7 +6,7 @@ import { FormField } from "../../components/FormField";
 import { PrimaryButton } from "../../components/PrimaryButton";
 import { login, getErrorMessage } from "../../lib/api";
 import { saveToken } from "../../lib/session";
-import { colors } from "../../lib/theme";
+import { colors, fonts } from "../../lib/theme";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ export default function LoginScreen() {
   return (
     <AuthLayout
       title="Welcome Back!"
-      subtitle="Login to your account in ST Ford Alternator!"
+      subtitle="Sign in to verify your alternator and view its details."
     >
       <FormField
         autoCapitalize="none"
@@ -57,9 +57,9 @@ export default function LoginScreen() {
         secureTextEntry
         value={password}
       />
-      <PrimaryButton label="LOGIN" loading={loading} onPress={submit} />
+      <PrimaryButton label="Sign in" loading={loading} onPress={submit} />
       <Text style={styles.footer}>
-        New to ST Ford Alternator app?{" "}
+        New to ST Ford Alternator?{" "}
         <Link href="/users/register" style={styles.link}>
           Create Account
         </Link>
@@ -70,14 +70,14 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   footer: {
-    color: colors.white,
+    color: colors.muted,
+    fontFamily: fonts.regular,
     fontSize: 14,
-    marginTop: 22,
+    marginTop: 24,
     textAlign: "center",
   },
   link: {
-    color: colors.white,
-    fontWeight: "700",
-    textDecorationLine: "underline",
+    color: colors.brand,
+    fontFamily: fonts.bold,
   },
 });

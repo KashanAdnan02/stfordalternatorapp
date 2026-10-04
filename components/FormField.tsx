@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, type TextInputProps, View } from "react-native";
-import { colors } from "../lib/theme";
+import { colors, fonts } from "../lib/theme";
 
 type FormFieldProps = TextInputProps & {
   label: string;
@@ -11,7 +11,8 @@ export function FormField({ label, style, ...inputProps }: FormFieldProps) {
       <Text style={styles.label}>{label}</Text>
       <TextInput
         accessibilityLabel={label}
-        placeholderTextColor="#A0A3A8"
+        placeholderTextColor={colors.muted}
+        selectionColor={colors.brand}
         style={[styles.input, style]}
         {...inputProps}
       />
@@ -21,21 +22,24 @@ export function FormField({ label, style, ...inputProps }: FormFieldProps) {
 
 const styles = StyleSheet.create({
   field: {
-    marginTop: 16,
+    marginTop: 14,
   },
   label: {
-    color: colors.white,
-    fontSize: 14,
-    fontWeight: "600",
-    marginBottom: 6,
+    color: colors.text,
+    fontFamily: fonts.semibold,
+    fontSize: 13,
+    marginBottom: 7,
   },
   input: {
-    borderBottomColor: "rgba(255,255,255,0.65)",
-    borderBottomWidth: 1,
-    color: colors.white,
-    fontSize: 16,
-    minHeight: 48,
-    paddingHorizontal: 2,
-    paddingVertical: 10,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
+    borderRadius: 12,
+    borderWidth: 1,
+    color: colors.text,
+    fontFamily: fonts.medium,
+    fontSize: 15,
+    minHeight: 50,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
   },
 });
